@@ -4,7 +4,6 @@ import (
 	"context"
 	"crypto/tls"
 	"errors"
-
 	"net"
 	"net/http"
 	"net/url"

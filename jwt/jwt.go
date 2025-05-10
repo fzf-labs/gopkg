@@ -2,7 +2,6 @@ package jwt
 
 import (
 	"context"
-
 	"strconv"
 	"time"
 
@@ -39,12 +38,6 @@ type Token struct {
 type Jwt struct {
 	cfg   *Config
 	cache Cache
-}
-
-type Cache interface {
-	Get(ctx context.Context, key string) (string, error)
-	Set(ctx context.Context, key string, value string, expiration time.Duration) error
-	Del(ctx context.Context, key string) error
 }
 
 const (
