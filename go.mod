@@ -1,6 +1,6 @@
 module github.com/fzf-labs/gopkg
 
-go 1.22
+go 1.23.0
 
 require (
 	github.com/Timothylock/go-signin-with-apple v0.2.0
@@ -20,6 +20,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/pyihe/apple_validator v0.0.0-20201105140642-5f932dd2c8e9
 	github.com/redis/go-redis/v9 v9.5.1
+	github.com/redis/rueidis v1.0.59
 	github.com/segmentio/ksuid v1.0.4
 	github.com/shirou/gopsutil/v3 v3.24.2
 	github.com/silenceper/wechat/v2 v2.1.6
@@ -29,7 +30,7 @@ require (
 	go.uber.org/goleak v1.3.0
 	go.uber.org/ratelimit v0.3.1
 	golang.org/x/exp v0.0.0-20240314144324-c7f7c6466f7f
-	golang.org/x/net v0.22.0
+	golang.org/x/net v0.38.0
 	golang.org/x/time v0.5.0
 	google.golang.org/protobuf v1.31.0
 	gopkg.in/yaml.v3 v3.0.1
@@ -83,11 +84,12 @@ require (
 	github.com/yusufpapurcu/wmi v1.2.4 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/mock v0.4.0 // indirect
-	golang.org/x/crypto v0.21.0 // indirect
-	golang.org/x/mod v0.16.0 // indirect
-	golang.org/x/sys v0.18.0 // indirect
-	golang.org/x/text v0.14.0 // indirect
-	golang.org/x/tools v0.19.0 // indirect
+	golang.org/x/crypto v0.36.0 // indirect
+	golang.org/x/mod v0.24.0 // indirect
+	golang.org/x/sync v0.12.0 // indirect
+	golang.org/x/sys v0.31.0 // indirect
+	golang.org/x/text v0.23.0 // indirect
+	golang.org/x/tools v0.31.0 // indirect
 	gopkg.in/alexcesaro/quotedprintable.v3 v3.0.0-20150716171945-2caba252f4dc // indirect
 	gopkg.in/mail.v2 v2.3.1 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect

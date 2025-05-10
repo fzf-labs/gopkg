@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/redis/go-redis/v9"
+	"github.com/redis/rueidis"
 )
 
 type Cache interface {
@@ -14,15 +15,15 @@ type Cache interface {
 }
 
 type RedisCache struct {
-	redis *redis.Client
+	client *redis.Client
 }
 
-func NewRedisCache(redis *redis.Client) *RedisCache {
-	return &RedisCache{redis: redis}
+func NewRedisCache(client *redis.Client) *RedisCache {
+	return &RedisCache{client: client}
 }
 
 func (c *RedisCache) Get(ctx context.Context, key string) (string, error) {
-	val, err := c.redis.Get(ctx, key).Result()
+	val, err := c.client.Get(ctx, key).Result()
 	if err != nil {
 		return "", err
 	}
@@ -30,9 +31,33 @@ func (c *RedisCache) Get(ctx context.Context, key string) (string, error) {
 }
 
 func (c *RedisCache) Set(ctx context.Context, key string, value string, expiration time.Duration) error {
-	return c.redis.Set(ctx, key, value, expiration).Err()
+	return c.client.Set(ctx, key, value, expiration).Err()
 }
 
 func (c *RedisCache) Del(ctx context.Context, key string) error {
-	return c.redis.Del(ctx, key).Err()
+	return c.client.Del(ctx, key).Err()
+}
+
+type RueidisCache struct {
+	client rueidis.Client
+}
+
+func NewRueidisCache(client rueidis.Client) *RueidisCache {
+	return &RueidisCache{client: client}
+}
+
+func (c *RueidisCache) Get(ctx context.Context, key string) (string, error) {
+	val, err := c.client.Do(ctx, c.client.B().Get().Key(key).Build()).ToString()
+	if err != nil {
+		return "", err
+	}
+	return val, nil
+}
+
+func (c *RueidisCache) Set(ctx context.Context, key string, value string, expiration time.Duration) error {
+	return c.client.Do(ctx, c.client.B().Set().Key(key).Value(value).Ex(expiration).Build()).Error()
+}
+
+func (c *RueidisCache) Del(ctx context.Context, key string) error {
+	return c.client.Do(ctx, c.client.B().Del().Key(key).Build()).Error()
 }
